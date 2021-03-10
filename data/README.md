@@ -1,0 +1,1 @@
+You need to drag the excel file into this folder and name it as 'NovData.xlsx'.
