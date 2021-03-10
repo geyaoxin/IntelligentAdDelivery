@@ -2,6 +2,11 @@ from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import GridSearchCV
 import numpy as np
 
+def train_model(model, parameter, X, y):
+    grid_model = GridSearchCV(estimator=model,param_grid=parameter,scoring="r2",cv=5)
+    grid_model.fit(X,y)
+    return grid_model.best_score_, grid_model.best_estimator_
+
 # Linear regression:
 def linearRegression(X_train, X_dev, y_train, y_dev):
     from sklearn import linear_model
@@ -16,9 +21,13 @@ def linearRegression(X_train, X_dev, y_train, y_dev):
     return model_LinearRegression
 
 # Ridge regression:
-def RidgeRegression():
+def RidgeRegression(X, y):
+    from sklearn import linear_model
     print("Begin Ridge regression training...")
-    return 0
+    alpha = np.logspace(-6,-1,10)
+    parameter = dict(alpha=alpha)
+    model = linear_model.Ridge()
+    return train_model(model,parameter,X,y)
 
 # Lasso regression:
 def LassoRegression():

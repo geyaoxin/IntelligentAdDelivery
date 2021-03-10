@@ -16,9 +16,11 @@ def train(X_train, X_dev, y_train, y_dev):
     print("Begin training...")
     
     # Linear regression:
-    model = linearRegression(X_train, X_dev, y_train, y_dev)
+    #model = linearRegression(X_train, X_dev, y_train, y_dev)
 
     # Ridge regression:
+
+    print(RidgeRegression(X_train,y_train))
 
     # Lasso regression:
 
