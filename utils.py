@@ -19,6 +19,14 @@ def args_parser():
     args = parser.parse_args()
     return args
 
+def timeConversion(data):
+    #TODO: Convert the data in '时间' column to an integer from 0 to 24.
+    '''
+    For example:
+        2020-11-02 17:00:04 --> 17
+    '''
+    return data
+
 def load_data():
     # load all data.
     xlsx_file = pd.read_excel('./data/NovData.xlsx')
@@ -29,6 +37,15 @@ def load_data():
     cleaned_data = xlsx_file.drop(index=xlsx_file.点击量[xlsx_file.点击量==0].index)
 
     # Feature engineering: select those columns we want.
-    cols = ['广告出价（分）', '订单单价，单位为“分”', '订单ROI', '曝光量', '点击率', '花费，单位为“分”', '商品页浏览率', '下单率']
-    final_data = cleaned_data[cols]
-    return final_data
+    cols_X = cleaned_data[['广告出价（分）', '订单单价，单位为“分”']]    #independent variable
+    exposure = cleaned_data[['曝光量']]                                #dependent variable
+    click_rate = cleaned_data[['点击率']]
+    cost = cleaned_data[['花费，单位为“分”']]
+    browse_rate = cleaned_data[['商品页浏览率']]
+    order_rate = cleaned_data[['下单率']]
+    roi = cleaned_data[['订单ROI']]
+
+    #TODO: pick time data into the independent variable data.
+    #cols_X = timeConversion(cleaned_data[['广告出价（分）', '订单单价，单位为“分”', '时间']])
+
+    return cols_X, exposure, click_rate, cost, browse_rate, order_rate, roi

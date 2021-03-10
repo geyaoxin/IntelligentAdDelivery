@@ -6,25 +6,42 @@ import csv
 import pickle
 import datetime
 import time
-
-from sklearn.metrics import mean_squared_error
-from sklearn.linear_model import LogisticRegression
-from sklearn.tree import DecisionTreeClassifier
-from xgboost import XGBClassifier
-from sklearn.ensemble import RandomForestClassifier, AdaBoostRegressor
-
-from sklearn.model_selection import train_test_split, GridSearchCV
-
-from sklearn.ensemble import VotingClassifier
+from sklearn.model_selection import train_test_split
 
 from utils import *
 
-def main(data):
-    train_test_split(data, y, test_size=0.1, random_state=42, shuffle=True)
+from reg_alg import *
 
-if __name__ == "__main__":
+def train(X_train, X_dev, y_train, y_dev):
+    print("Begin training...")
+    
+    # Linear regression:
+    model = linearRegression(X_train, X_dev, y_train, y_dev)
+
+    # Ridge regression:
+
+    # Lasso regression:
+
+    # ElasticNet regression:
+
+    # ExtraTree regression:
+
+    # Decision Tree regression:
+
+    # Random Forest regression:
+
+    # Gradient Boosting Random Forest Regression
+
+    print("End training...")
+
+def main():
     args = args_parser()
     print("loading data...")
-    data = load_data()
-    main(data)
-    ############################
+    cols_X, exposure, click_rate, cost, browse_rate, order_rate, roi = load_data()
+    X_train, X_dev, y_train, y_dev = train_test_split(cols_X, exposure, test_size=0.1, random_state=42, shuffle=True) 
+    print('X_train.shape:{0}, X_dev.shape:{1}, y_train.shape:{2}, y_dev.shape:{3}'.format(X_train.shape, X_dev.shape, y_train.shape, y_dev.shape))
+
+    train(X_train, X_dev, y_train, y_dev)
+
+if __name__ == "__main__":
+    main()
