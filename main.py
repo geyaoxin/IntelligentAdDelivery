@@ -20,7 +20,7 @@ def train(X_train, X_dev, y_train, y_dev):
 
     # Ridge regression:
 
-    print(RidgeRegression(X_train,y_train))
+    # print(RidgeRegression(X_train,y_train))
 
     # Lasso regression:
 
@@ -28,7 +28,11 @@ def train(X_train, X_dev, y_train, y_dev):
 
     # ExtraTree regression:
 
+    print(ExtraTreeRegression(X_train, y_train))
+
     # Decision Tree regression:
+
+    print(DecisionTreeregression(X_train, y_train))
 
     # Random Forest regression:
 

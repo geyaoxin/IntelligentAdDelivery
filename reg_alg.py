@@ -40,14 +40,26 @@ def ElasticNetRegression():
     return 0
 
 # ExtraTree regression:
-def ExtraTreeRegression():
+def ExtraTreeRegression(X, y):
+    from sklearn.ensemble import BaggingRegressor
+    from sklearn.tree import ExtraTreeRegressor
     print("Begin ExtraTree regression training...")
-    return 0
+    n_estimators = np.array([i for i in range(5,15)])
+    parameter = dict(n_estimators=n_estimators)
+    extra_tree = ExtraTreeRegressor(random_state=0)
+    model = BaggingRegressor(extra_tree, random_state=0)
+
+    return train_model(model,parameter,X,y)
 
 # Decision Tree regression:
-def DecisionTreeregression():
+def DecisionTreeregression(X, y):
+    from sklearn import tree
     print("Begin Decision Tree regression training...")
-    return 0
+    max_depth = np.logspace(0,1,10)
+    parameter = dict(max_depth=max_depth)
+    model = tree.DecisionTreeRegressor()
+
+    return train_model(model,parameter,X,y)
 
 # Random Forest regression:
 def RandomForestregression():
