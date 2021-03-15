@@ -26,17 +26,25 @@ def RidgeRegression(X, y):
     print("Begin Ridge regression training...")
     alpha = np.logspace(-6,-1,10)
     parameter = dict(alpha=alpha)
-    model = linear_model.Ridge()
+    model = linear_model.Ridge() 
     return train_model(model,parameter,X,y)
 
 # Lasso regression:
-def LassoRegression():
+def LassoRegression(X, y):
+    from sklearn import linear_model
     print("Begin Lasso regression training...")
-    return 0
+    alpha = np.logspace(-6,-1,10)#(?)
+    parameter = dict(alpha=alpha)
+    model = linear_model.Lasso()
+    return train_model(model,parameter,X,y)
 
 # ElasticNet regression:
-def ElasticNetRegression():
+def ElasticNetRegression(X, y):
+    from sklearn import linear_model
     print("Begin ElasticNet regression training...")
+    alpha = np.logspace(-6,-1,10)#(?)
+    parameter = dict(alpha=alpha, l1_ratio=0.5)
+    model = linear_model.Lasso()
     return 0
 
 # ExtraTree regression:
