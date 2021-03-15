@@ -25,7 +25,12 @@ def timeConversion(data):
     For example:
         2020-11-02 17:00:04 --> 17
     '''
-    return data
+    handled_data=data.copy()
+    ls=[str(i) for i in handled_data["时间"]]
+    for i in range(len(ls)):
+       handled_data["时间"][i]=ls[i].split(" ")[1].split(":")[0]
+
+    return handled_data
 
 def load_data():
     # load all data.
