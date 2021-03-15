@@ -44,8 +44,8 @@ def ElasticNetRegression(X, y):
     print("Begin ElasticNet regression training...")
     alpha = np.logspace(-6,-1,10)#(?)
     parameter = dict(alpha=alpha, l1_ratio=0.5)
-    model = linear_model.Lasso()
-    return 0
+    model = linear_model.ElasticNet()
+    return train_model(model,parameter,X,y)
 
 # ExtraTree regression:
 def ExtraTreeRegression(X, y):
